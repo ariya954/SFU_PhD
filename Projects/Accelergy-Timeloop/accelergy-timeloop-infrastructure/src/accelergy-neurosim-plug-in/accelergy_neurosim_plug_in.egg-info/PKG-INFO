@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: accelergy-neurosim-plug-in
+Version: 0.1
+Summary: An Accelergy framework plugin for NeuroSim
+Home-page: UNKNOWN
+Author: Tanner Andrulis
+Author-email: andrulis@mit.edu
+License: MIT
+Keywords: hardware energy estimation analog adc neurosim pim processing-in-memory cim
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)
+Requires-Python: >=3.8
+
+UNKNOWN
+

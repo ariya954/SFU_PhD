@@ -1,0 +1,15 @@
+mapping:
+  - target: MainMemory
+    type: temporal
+    factors: I=1024 C=128
+    permutation: CI
+    
+  - target: GlobalBuffer
+    type: temporal
+    factors: J=1024 O=256
+    permutation: OJ
+
+  - target: PE
+    type: spatial
+    factors: H=3 W=3
+    permutation: WH

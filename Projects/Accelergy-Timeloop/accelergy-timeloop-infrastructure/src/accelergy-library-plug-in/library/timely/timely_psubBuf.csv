@@ -1,0 +1,4 @@
+technology,global_cycle_seconds,n_instances,energy,area,action
+65nm,1e-9,1,0.0023,5,drive|read|convert
+65nm,1e-9,1,0,5,leak|update|write
+# Numbers from paper table II

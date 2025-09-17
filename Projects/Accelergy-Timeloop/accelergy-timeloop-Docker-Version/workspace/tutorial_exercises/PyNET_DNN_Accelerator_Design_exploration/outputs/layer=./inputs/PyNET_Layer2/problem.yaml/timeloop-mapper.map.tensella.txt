@@ -1,0 +1,23 @@
+t3
+C 32 O 1 I 1024 J 1 H 1 W 1 
+CI
+#error Tenssella does not support bypass.
+#error Tenssella does not support bypass.
+#error Tenssella does not support bypass.
+#error Tenssella does not support bypass.
+t2
+C 1 O 64 I 1 J 1024 H 1 W 1 
+OJ
+#error Tenssella does not support bypass.
+#error Tenssella does not support bypass.
+#error Tenssella does not support bypass.
+t1
+C 1 O 1 I 1 J 1 H 1 W 1 
+W
+s1
+C 1 O 1 I 1 J 1 H 3 W 3 
+WH
+4
+t0
+C 1 O 1 I 1 J 1 H 1 W 1 
+W

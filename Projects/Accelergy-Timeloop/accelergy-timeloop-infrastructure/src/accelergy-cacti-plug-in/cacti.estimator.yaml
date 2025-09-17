@@ -1,0 +1,3 @@
+version: 0.4     # Required
+python_plug_ins: # Relative paths from this file
+- cacti_wrapper.py

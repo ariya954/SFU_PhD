@@ -1,0 +1,51 @@
+input file: /home/workspace/tutorial_exercises/02_interface_and_design_space_exploration_2024/outputs/glb_scale=0.5,pe_scale=0.5/parsed-processed-input.yaml
+  _______                __                
+ /_  __(_)___ ___  ___  / /___  ____  ____ 
+  / / / / __ `__ \/ _ \/ / __ \/ __ \/ __ \
+ / / / / / / / / /  __/ / /_/ / /_/ / /_/ /
+/_/ /_/_/ /_/ /_/\___/_/\____/\____/ .___/ 
+                                  /_/      
+
+Problem configuration complete.
+execute:/usr/local/bin/accelergy /home/workspace/tutorial_exercises/02_interface_and_design_space_exploration_2024/outputs/glb_scale=0.5,pe_scale=0.5/parsed-processed-input.yaml --oprefix timeloop-mapper. -o ./ > timeloop-mapper.accelergy.log 2>&1
+Generate Accelergy ERT (energy reference table) to replace internal energy model.
+Generate Accelergy ART (area reference table) to replace internal area model.
+Architecture configuration complete.
+Sparse optimization configuration complete.
+Using threads = 4
+Mapper configuration complete.
+Initializing Index Factorization subspace.
+  Factorization options along problem dimension C = 8
+  Factorization options along problem dimension M = 6
+  Factorization options along problem dimension R = 1
+  Factorization options along problem dimension S = 1
+  Factorization options along problem dimension N = 6
+  Factorization options along problem dimension P = 8
+  Factorization options along problem dimension Q = 8
+  Factorization options along problem dimension G = 1
+Mapspace Dimension [IndexFactorization] Size: 18432
+Mapspace Dimension [LoopPermutation] Size: 14400
+Mapspace Dimension [Spatial] Size: 1
+Mapspace Dimension [DatatypeBypass] Size: 1
+Mapspace split! Per-split Mapping Dimension [IndexFactorization] Size: 4608 Residue: 0
+Mapspace construction complete.
+Search configuration complete.
+Start Parsering Layout
+No Layout specified, so using bandwidth based modeling
+[  2] STATEMENT: 10000 invalid mappings (5702 fanout, 4298 capacity) found since the last valid mapping, terminating search.
+[  3] STATEMENT: 10000 invalid mappings (5702 fanout, 4298 capacity) found since the last valid mapping, terminating search.
+[  0] STATEMENT: 10000 invalid mappings (3544 fanout, 6456 capacity) found since the last valid mapping, terminating search.
+[  1] STATEMENT: 10000 invalid mappings (3544 fanout, 6456 capacity) found since the last valid mapping, terminating search.
+
+MESSAGE: no valid mappings found within search criteria. Some suggestions:
+(1) Observe each mapper thread's termination message. If it terminated due to
+    consecutive failed mappings, it will tell you the number of mappings that
+    failed because of a spatial fanout violation and the number that failed
+    because of a buffer capacity violation.
+(2) Check your architecture configuration (especially mapspace constraints).
+    Try to find the offending constraints that are likely to have caused the
+    above violations, and disable those constraints.
+(3) Try other search algorithms, and relax the termination criteria:
+    victory_condition, timeout and/or search_size.
+(4) Enable mapper's diagnostics (mapper.diagnostics = True) to track and emit 
+    more information about failed mappings.

@@ -1,0 +1,44 @@
+mapping:
+  type: fused
+  nodes:
+  - type: storage
+    target: 0
+    dspace: [Filter1, Filter2, Fmap1, Fmap3]
+  - type: storage
+    target: 1
+    dspace: [Filter1, Filter2]
+  - type: temporal
+    rank: P2
+    tile_shape: 1
+  - type: storage
+    target: 1
+    dspace: [Fmap1, Fmap3]
+  - type: storage
+    target: 2
+    dspace: [Fmap2]
+  - type: sequential
+    branches:
+    - - type: temporal
+        rank: C1
+        tile_shape: 1
+      - type: spatial
+        rank: M1
+        tile_shape: 1
+      - type: storage
+        target: 3
+        dspace: [Fmap1]
+      - type: compute
+        einsum: Fc1
+        target: 4
+    - - type: temporal
+        rank: C2
+        tile_shape: 1
+      - type: spatial
+        rank: M2
+        tile_shape: 1
+      - type: storage
+        target: 3
+        dspace: [Fmap2]
+      - type: compute
+        einsum: Fc2
+        target: 4

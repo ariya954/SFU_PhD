@@ -1,0 +1,49 @@
+ERT_summary:
+    version: '0.4'
+    table_summary:
+      - name: system_top_level.DRAM[1..1]
+        actions:
+          - name: write
+            energy: 512.0
+          - name: leak
+            energy: 0.0
+          - name: read
+            energy: 512.0
+          - name: update
+            energy: 512.0
+        primitive_estimation(s):
+          - name: system_top_level.DRAM[1..1]
+            estimator: CactiDRAM
+      - name: system_top_level.buffer[1..1]
+        actions:
+          - name: write
+            energy: 9.19926
+          - name: leak
+            energy: 0.000141656
+          - name: read
+            energy: 7.81683
+          - name: update
+            energy: 9.19926
+        primitive_estimation(s):
+          - name: system_top_level.buffer[1..1]
+            estimator: CactiSRAM
+      - name: system_top_level.reg[1..4]
+        actions:
+          - name: read
+            energy: 0
+          - name: write
+            energy: 0
+          - name: update
+            energy: 0
+          - name: leak
+            energy: 0
+        primitive_estimation(s): []
+      - name: system_top_level.mac[1..4]
+        actions:
+          - name: compute
+            energy: 4.14366
+        primitive_estimation(s):
+          - name: adder
+            estimator: Library
+          - name: multiplier
+            estimator: Library

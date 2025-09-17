@@ -1,0 +1,10 @@
+technology,global_cycle_seconds,width|datawidth,energy,area,action
+32nm,1e-9,256,20.74,150000,read,energy in pJ;  area in um^2;
+32nm,1e-9,256,0,150000,leak|update|write
+# ISAAC shares each of these between 4 tiles
+# Assuming router BW = eDRAM BW per tile
+# Power * Time / (Reads+Writes) = Energy per read/write
+# (42e-3 / 4 / 12) power
+# (16384 / ((128*8*10^7*1.2) * 100 / 128)) time for DACs/ADCs to consume entire input buffer
+# (16384 + 2048) / 256 reads+writes
+# (42e-3 / 4 / 12) * (16384 / ((128*8*10^7*1.2) * 100 / 128)) / ((16384 + 2048) / 256) * 1e12
