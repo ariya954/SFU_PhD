@@ -1,0 +1,11 @@
+prefix=/localhome/mta188/Semantic-SplatBridge/tiny-cuda-nn-install
+exec_prefix=/localhome/mta188/Semantic-SplatBridge/tiny-cuda-nn-install
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: fmt
+Description: A modern formatting library
+Version: 11.2.1
+Libs: -L${libdir} -lfmt
+Cflags: -I${includedir}
+

@@ -1,0 +1,55 @@
+To Run Semantic-SplatBridge, do the followings:
+	Open a terminal (terminal 1)
+	Type:
+		ssh mta188@cs-arch-30
+		conda deactivate
+		~/miniconda/bin/conda init bash
+		source ~/.bashrc
+		conda activate ros2_humble
+		conda info --envs
+		conda activate ros2-humble
+		module avail
+		module load LIB/CUDA/12.6 
+		cd Semantic-SplatBridge
+		python scripts/download_data.py (choose wagon dataset by typing "wagon")
+		# Step 0: Kill all ROS 2 / CycloneDDS processes
+		pkill -9 -f ros2
+		pkill -9 -f cyclonedds
+		rm -rf ~/.ros/ros2_daemon*
+		# Step 1: Start ROS 2 daemon
+		export ROS_DOMAIN_ID=1
+		export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+		unset CYCLONEDDS_URI
+		ros2 daemon start
+		ros2 daemon status
+		ns-train ros-depth-splatfacto --data configs/zed_mocap.json
+	if it fails, do the steps from pkill -9 -f ros2 again
+	Keep the terminal opened and open another terminal (terminal 2)
+	Type: 
+		ssh mta188@cs-arch-30
+		conda deactivate
+		~/miniconda/bin/conda init bash
+		source ~/.bashrc
+		conda activate ros2_humble
+		conda info --envs
+		conda activate ros2-humble
+		export ROS_DOMAIN_ID=1
+		export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+		unset CYCLONEDDS_URI
+		# NOTE: for this example, Terminal 2 does not need to use the conda env.
+		# Play the rosbag, but start it paused.
+		cd Semantic-SplatBridge/rosbags
+		ros2 bag play wagon --start-paused
+	After some initialization a message will appear in the first terminal (terminal 1) stating that (NerfBridge) Waiting to recieve 5 images..., 
+	at this point you should open the Nerfstudio viewer in a browser tab to visualize the Splatfacto model as it trains.
+	To open the Nerfstudio viewer, do the followings:
+		open a new terminal (terminal 3)
+		type:
+			ssh -L 55119:localhost:55119 mta188@cs-arch-30
+		replace "55119" with the port number shown in terminal 1 before the message "Waiting to recieve 5 images..."
+		In terminal 2 open the http link
+	In terminal 2 Press the SPACE key to start playing the rosbag. 
+	Once the pre-training image buffer is filled then training should commence, and the usual Nerfstudio print messages will appear in Terminal 1.
+	After a few seconds the Nerfstudio viewer should start to show the recieved images as camera frames, and the Splatfacto model should begin be filled out.
+	After the rosbag in terminal 2 finishes playing Semantic-SplatBridge will continue training the Splatfacto model on all of the data that it has recieved, 
+	but no new data will be added. You can use CTRL+c to kill Semantic-SplatBridge after you are done inspecting the Splatfacto model in the viewer.
