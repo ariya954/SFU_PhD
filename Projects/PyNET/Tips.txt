@@ -1,0 +1,66 @@
+To Implement PyNET and extract each layer's parameters, do the followings:
+	Go to Home/bashrc and add export PYTHONPATH=/localhome/mta188/local/lib/python3.10/dist-packages:$PYTHONPATH to the end of the file
+	Open terminal
+	git clone https://github.com/aiff22/PyNET-PyTorch.git
+	Rename PyNET-PyTorch to PyNET
+	cd PyNET
+	pip install torch torchvision --target=/localhome/mta188/PyNET
+	pip install scipy numpy imageio pillow tqdm --target=/localhome/mta188/PyNET
+	Copy all the items under PyNET/PyNET into the main folder PyNET
+	Copy a .py file and rename it to PyNET.py
+	In PyNET.py write:
+		import torch
+		from model import PyNET  # model.py defines the architecture
+
+		# Load model
+		pynet = PyNET(level=5)  # You might need to specify the model level, e.g., PyNET(level=5)
+		pynet.eval()
+
+		# Load pre-trained weights
+		checkpoint = torch.load('pynet_level5.pth', map_location='cpu')  # Replace with actual .pth file path
+		pynet.load_state_dict(checkpoint)
+
+		from PIL import Image
+		from torchvision import transforms
+
+		# Preprocess input
+		transform = transforms.Compose([
+		    transforms.Resize((1024, 1024)),  # Match training input size
+		    transforms.ToTensor()
+		])
+
+		img = Image.open('sample.jpg').convert('RGB')
+		input_tensor = transform(img).unsqueeze(0)  # Add batch dimension
+
+		with torch.no_grad():
+		    output = pynet(input_tensor)
+
+		# Save or view output
+		from torchvision.utils import save_image
+		save_image(output, 'enhanced.jpg')
+
+		# extract parameters (weights and biases) from each layer
+		for name, module in pynet.named_modules():
+		    if hasattr(module, 'weight'):
+			print(f"\nLayer: {name}")
+			print(f"  Weight shape: {module.weight.shape}")
+			if hasattr(module, 'bias') and module.bias is not None:
+			    print(f"  Bias shape: {module.bias.shape}")
+        Then run "python3 PyNET.py" in terminal
+	To train PyNET yourself, first download Zurich RAW to RGB dataset and put it in PyNET/raw_images, then run this commands in terminal:
+		cd PyNET
+		python3 train_model.py level=5 batch_size=50 num_train_epochs=8
+	Training process is done by stochastic gradient decent algorithm (see "Art of Reinforcement Learning -> chapter 6 -> linear value approximation" to remind of the algorithm)
+	To push to github, do the followings:
+		First create a public repo under sfu-arch and name it PyNET
+		Go to: https://github.com/settings/keys
+		Click New SSH key
+		Paste your public key (~/.ssh/id_ed25519.pub or ~/.ssh/id_rsa.pub)
+		Click Add SSH key
+		Open terminal
+		cd PyNET
+		git init
+		git add .
+		git commit -m "Adding PyNET Files"
+		git remote set-url origin git@github.com:sfu-arch/PyNET.git
+		git push origin main
