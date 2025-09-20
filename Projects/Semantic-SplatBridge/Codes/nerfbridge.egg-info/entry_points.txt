@@ -1,4 +1,0 @@
-[nerfstudio.method_configs]
-ros-depth-nerfacto = nerfbridge.method_configs:RosDepthNerfacto
-ros-depth-splatfacto = nerfbridge.method_configs:RosDepthSplatfacto
-rt-guide-splatfacto = nerfbridge.method_configs:RTGuideSplatfacto
