@@ -1,3 +1,0 @@
-[submodule "cacti"]
-	path = cacti
-	url = https://github.com/HewlettPackard/cacti.git

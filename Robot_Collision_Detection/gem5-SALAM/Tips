@@ -1,0 +1,21 @@
+To add an accelerator using gem5-SALAM do the followings:
+     - Copy sys_validation/unrolling and rename it to your accelerator's name
+     - In config.yaml file, under the Accelerator (Name: unrolling) section, you can add the inputs of your accelerator (such as an array)
+       and the outputs of your accelerator (such as the sum of array, which is calculated by the accelerator). Becareful to set the size
+       aligned (for example set the array size to 4x compare to the real size of array, as integer's size is 4 bytes)
+     - In config.yaml file, under the Accelerator (Name: Top) section, you can add the things you want to pass as an input to the
+       accelerator (such as an array) and the things you want to get from the accelerator as an output (such as the sum of array)
+     - In unrolling_clstr_hw_defines.h, write the names of the parts you added to the config.yaml file (such as ORIGINAL_ARRAY and
+       ARRAY_SUM, which are initiated by cpu and are the accelerator's inputs, and ARRAY and SUM_OF_ARRAY, which are for the accelerator).
+       There is no need to set any address, as addresses are set by systembuilder.py starting from its base address and the sizes set in
+       config.yaml file are added to the base address.
+     - In hw/top.c we ask dma to:
+       	1. Transfer the inputs (from ORIGINAL_ARRAY in main memory set by cpu) to accelerator inputs (ARRAY in main memory)
+		2. Transfer the accelerator outputs (from SUM_OF_ARRAY in main memory set by the accelertor) to cpu (ARRAY_SUM in memory)
+		Becareful to set a correct length for DmaCopyLen (for array it should be 4*arr_size and for an integer output it should be 4)
+     - In sw/main.cpp:
+       	1. We initiate the accelerator inputs (see the lines [1:15] in Unrolling)
+		2. By setting *top = 0x01, cpu asks the accelerator to start its process
+		3. After termination of the process, we check if the accelerator's output is correct or not
+     - Put the accelerator's implementation in hw/unrolling.c
+     - Add your accelerator's name to hw/Makefile and sys_validation/Makefile
