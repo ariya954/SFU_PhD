@@ -1,0 +1,75 @@
+To Implement Accelergy-Timeloop using Docker, do the followings:
+	Go to https://github.com/Accelergy-Project/timeloop-accelergy-exercises
+	Download the codes as Zip (See green button "<> Code")
+	Extract it in Home directory
+	Go to Home/timeloop-accelergy and open Terminal
+	Make a copy of the provided template docker compose file by typing the command "cp docker-compose.yaml.template docker-compose.yaml"
+	Run docker by typing the command "DOCKER_ARCH=amd64 docker compose up"
+	Right click on the second url shown at the end of the Terminal screen and open the link
+	On the browser, navigate to tutorial_exercises/01_accelergy_timeloop_2020_ispass and open README.md
+	This file shows how to run Accelergy-Timeloop examples 	
+	Navigate to timeloop/04-model-conv1d+oc-3levelspatial and open README.md
+	This file shows how to run the implemented DNN acclerator and mapping, which is written in 04-model-conv1d+oc-3levelspatial folder and map/cp
+	
+To implement DNN accelerator, do the followings:
+	Define the problem in problem directory (for example change the content of 04-model-conv1d+oc-3levelspatial/prob/conv1d+oc+ic.prob.yaml)
+	The problem in PyNET is as follows:
+		# Perform convolution
+		for c_in in range(number_of_input_channels): # input channels are like R, G, B and Y channels of pixels of an image
+		    for c_out in range(number_of_output_channels): # output channels are filters applied to an image like sharpening filter
+			for i in range(height_of_image):
+			    for j in range(width_of_image):
+				for h in range(height_of_kernel): # kernel is a small matrix (for example 3*3) which is slided over an image to apply the filter and extract features of the image
+				    for w in range(width_of_kernel):
+				        output[c_out, i, j] += input_image[c_in, i + h, j + w] * weight[c_out, h, w] + bias[c_out]
+
+		return output
+		To extract the parameters (c_in, c_out, width and height of kernel) of PyNET layers, navigate to model.py in Home/PyNET and see this line:
+		        self.conv_l1_d1 = ConvMultiBlock(4, 32, 3, instance_norm=False) # 3 = 3*3 kernel
+		To extract the width and height of the input image of PyNET layers, navigate to PyNET.py in Home/PyNET and see this line:
+		        transforms.Resize((1024, 1024)),  # Match training input size
+	Define the hardware architecture in arch directory (for example change the content of 04-model-conv1d+oc-3levelspatial/arch/3levelspatial.arch.yaml)
+		In hardware designing try to set the DRAM and SRAM size (size = depth * width) according to the available commercial DRAM and SRAM sizes 	
+	Define the hardware accelerator mapping in map directory (for example change the content of 04-model-conv1d+oc-3levelspatial/map/conv1d+oc+ic-3levelspatial-cp-ws.map.yaml)
+		In mapping:
+			Main Memory passes each row of an image to the Global Buffer, so it does this about the number of rows of the image for each input image channel, which is 1024
+			Global Buffer assigns corresponding weights to each pixel of the row and passes them to PEs for calculation, so it does this about the number of pixels of the row, which is 1024
+			PEs calculate the convolution by computing output[c_out, t, j] += input_image[c_in, t + h, j + w] * weight[c_out, h, w] + bias[c_out] for a 3*3 window of the input image
+			
+To use a single DNN accelerator for multiple problems (e.g., using a single DNN accelerator for different layers of a neural network) do the followings:
+	Create a new folder in tutorial_exercises and name it PyNET_DNN_Accelerator_Desing_exploration
+	Copy the inputs, outputs folders and 2_design_space_exploration.ipynb file from tutorial_exercies/02_interface_and_design_space_exploration_2024
+	Create a folder in inputs folder and name it PyNET_Layer1 and remove other yaml files
+	Copy the problem, arch and mapping files from 01_accelergy_timeloop_2020_ispass/timeloop/04-model-conv1d+oc-3levelspatial to PyNET_Layer1
+	Create three other folders in inputs folder for layers 2, 3 and 4 and copy the files from PyNET_Layer1 into them
+	Change the problem and mapping of the other layers (folders PyNET_Layer2, PyNET_Layer3 and PyNET_Layer4) according to the layers size of PyNET in model.py (self.conv_l2_d1 to self.conv_l4_d1)
+	Remove the files in outputs folder
+	Rename the 2_design_space_exploration.ipynb file to PyNET_dnn_accelerator_design_exploration.ipynb
+	In PyNET_dnn_accelerator_design_exploration.ipynb first specifications of PyNET layers are loaded from the inputs folder in the following line of the code:
+		PyNET_Layers_specification = [[f"{os.curdir}/inputs/PyNET_Layer1/problem.yaml", f"{os.curdir}/inputs/PyNET_Layer1/arch.yaml", f"{os.curdir}/inputs/PyNET_Layer1/mapper.yaml"],
+		                      [f"{os.curdir}/inputs/PyNET_Layer2/problem.yaml", f"{os.curdir}/inputs/PyNET_Layer2/arch.yaml", f"{os.curdir}/inputs/PyNET_Layer2/mapper.yaml"],
+		                      [f"{os.curdir}/inputs/PyNET_Layer3/problem.yaml", f"{os.curdir}/inputs/PyNET_Layer3/arch.yaml", f"{os.curdir}/inputs/PyNET_Layer3/mapper.yaml"],
+		                      [f"{os.curdir}/inputs/PyNET_Layer4/problem.yaml", f"{os.curdir}/inputs/PyNET_Layer4/arch.yaml", f"{os.curdir}/inputs/PyNET_Layer4/mapper.yaml"]]
+	Then the dnn accelerator is run for each of layers in a loop in the following line of the code:
+		results = joblib.Parallel(n_jobs=None)(joblib.delayed(run_test)(*layer) for layer in PyNET_Layers_specification
+	In run_test function, the yaml files of a layer are loaded in the following line of the code:
+		def run_test(path_to_problem, path_to_arch, path_to_mapping):
+		    # Get the specification from yaml files
+		    spec = tl.Specification.from_yaml_files(path_to_problem, path_to_arch, path_to_mapping))
+	Then the mapper is called to implement the dnn accelerator defined in arch.yaml for the problem defined in problem.yaml with the mapping configurations defined in mapper.yaml
+	    # Give each run a unique ID and run the mapper
+	    proc_id = f"layer={path_to_problem}"
+	    out_dir = f"{os.curdir}/outputs/{proc_id}"
+
+	    return (
+		spec.architecture.find("GlobalBuffer"),
+		tl.call_mapper(spec, output_dir=out_dir, log_to=f"{out_dir}/output.log"),
+	To see the energy consumption of a hardware component like Global Buffer, the GlobalBuffer is returned in the above code and used in the main function as below:
+		layers = list(range(1, len(PyNET_Layers_specification) + 1))
+		energies = [r[1].per_compute("energy") * 1e12 for r in results]
+
+		plt.plot(layers, energies)
+		plt.xlabel('PyNET Layers')
+		plt.ylabel('Energy (pJ/MAC)')
+		plt.title('Global Buffer Energy Consumption for PyNET Layers')
+		plt.show()

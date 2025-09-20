@@ -1,0 +1,220 @@
+dumped_by_timeloop_front_end: true
+architecture:
+    version: '0.4'
+    subtree:
+      - name: System_top_level
+        attributes:
+            version: '0.4'
+            technology: "40nm"
+            global_cycle_seconds: 1e-9
+            has_power_gating: false
+            power_gated_at: null
+        local:
+          - name: MainMemory[1..1]
+            class: DRAM
+            attributes:
+                depth: 131072
+                width: 32768
+                datawidth: 8
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 1
+                meshY: 1
+                technology: "40nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - write
+              - leak
+              - update
+              - read
+            enabled: true
+          - name: GlobalBuffer[1..1]
+            class: SRAM
+            attributes:
+                depth: 65536
+                width: 512
+                datawidth: 8
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 1
+                meshY: 1
+                technology: "40nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - write
+              - leak
+              - update
+              - read
+            enabled: true
+          - name: inter_PE_spatial[1..1]
+            class: dummy_storage
+            attributes:
+                width: 1
+                depth: 1
+                datawidth: 1
+                technology: -1
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 1
+                meshY: 1
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            enabled: true
+          - name: RegisterFile[1..256]
+            class: regfile
+            attributes:
+                depth: 64
+                width: 8
+                datawidth: 8
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 16
+                meshY: 16
+                technology: "40nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - write
+              - leak
+              - update
+              - read
+            enabled: true
+          - name: MACC[1..256]
+            class: intmac
+            attributes:
+                width: 8
+                has_power_gating: false
+                meshX: 16
+                meshY: 16
+                technology: "40nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - compute
+            enabled: true
+architecture_constraints:
+    targets:
+      - target: MainMemory
+        type: temporal
+        factors: I=1024,C=32
+        permutation: CI
+      - target: GlobalBuffer
+        type: temporal
+        factors: J=1024,O=64
+        permutation: OJ
+      - type: spatial
+        target: inter_PE_spatial
+        factors: H=3,W=3
+        permutation: WH
+      - factors: C=1,O=1,I=1,J=1,H=1,W=1
+        permutation: COIJHW
+        type: temporal
+        target: inter_PE_spatial
+      - bypass:
+          - Weights
+          - Inputs
+          - Bias
+          - Outputs
+        type: bypass
+        target: inter_PE_spatial
+problem:
+    version: '0.4'
+    shape:
+        name: PyNET_Conv_L2_D1
+        dimensions:
+          - C
+          - O
+          - I
+          - J
+          - H
+          - W
+        data_spaces:
+          - name: Weights
+            projection:
+              -   -   - O
+              -   -   - H
+              -   -   - W
+            read_write: false
+          - name: Inputs
+            projection:
+              -   -   - C
+              -   -   - I
+                  -   - H
+              -   -   - J
+                  -   - W
+            read_write: false
+          - name: Bias
+            projection:
+              -   -   - O
+            read_write: false
+          - name: Outputs
+            projection:
+              -   -   - O
+              -   -   - I
+              -   -   - J
+            read_write: true
+        coefficients: []
+    instance:
+        C: 32
+        O: 64
+        I: 1024
+        J: 1024
+        H: 3
+        W: 3
+        densities: {}
+compound_components:
+    version: '0.4'
+    classes: []
+mapping: []
+mapper:
+    version: '0.4'
+    out_prefix: timeloop-mapper
+    num_threads: 8
+    optimization_metric: []
+    search_size: null
+    timeout: 1000
+    victory_condition: null
+    sync_interval: null
+    log_interval: 1
+    log_oaves: false
+    log_oaves_mappings: false
+    log_stats: false
+    log_suboptimal: false
+    live_status: false
+    diagnostics: false
+    penalize_consecutive_bypass_fails: false
+    emit_whoop_nest: false
+    max_temporal_loops_in_a_mapping: -1
+    algorithm: hybrid
+    filter_revisits: false
+    max_permutations_per_if_visit: 16
+mapspace:
+    version: '0.4'
+    template: uber
+globals:
+    version: '0.4'
+    environment_variables: {}
+    expression_custom_functions: []
+    accelergy_plug_ins: []

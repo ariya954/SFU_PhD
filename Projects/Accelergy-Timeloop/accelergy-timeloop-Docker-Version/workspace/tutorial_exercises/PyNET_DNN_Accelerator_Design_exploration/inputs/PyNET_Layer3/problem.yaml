@@ -1,0 +1,33 @@
+problem:
+  version: 0.4
+  shape:
+    name: PyNET_Conv_L3_D1
+    dimensions: [ C, O, I, J, H, W]
+    data_spaces:
+    - name: Weights
+      projection:
+      - [ [O] ]      
+      - [ [H] ]
+      - [ [W] ]
+    - name: Inputs
+      projection:
+      - [ [C] ]      
+      - [ [I], [H] ]
+      - [ [J], [W] ]
+    - name: Bias
+      projection:
+      - [ [O] ]      
+    - name: Outputs
+      projection:
+      - [ [O] ]      
+      - [ [I] ]
+      - [ [J] ]
+      read_write: True
+
+  instance:
+    C: 64
+    O: 128
+    I: 1024
+    J: 1024
+    H: 3
+    W: 3

@@ -1,0 +1,3 @@
+[console_scripts]
+accelergyTables = accelergy_table_based_plug_ins.console:main
+

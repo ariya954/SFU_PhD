@@ -1,0 +1,56 @@
+input file: /home/workspace/tutorial_exercises/PyNET_DNN_Accelerator_Design_exploration/outputs/layer=./inputs/PyNET_Layer3/problem.yaml/parsed-processed-input.yaml
+  _______                __                
+ /_  __(_)___ ___  ___  / /___  ____  ____ 
+  / / / / __ `__ \/ _ \/ / __ \/ __ \/ __ \
+ / / / / / / / / /  __/ / /_/ / /_/ / /_/ /
+/_/ /_/_/ /_/ /_/\___/_/\____/\____/ .___/ 
+                                  /_/      
+
+Problem configuration complete.
+execute:/usr/local/bin/accelergy /home/workspace/tutorial_exercises/PyNET_DNN_Accelerator_Design_exploration/outputs/layer=./inputs/PyNET_Layer3/problem.yaml/parsed-processed-input.yaml --oprefix timeloop-mapper. -o ./ > timeloop-mapper.accelergy.log 2>&1
+Generate Accelergy ERT (energy reference table) to replace internal energy model.
+Generate Accelergy ART (area reference table) to replace internal area model.
+Architecture configuration complete.
+Sparse optimization configuration complete.
+Using threads = 8
+WARNING: no optimization metric(s) specified, using edp as default.
+Mapper configuration complete.
+Initializing Index Factorization subspace.
+  Factorization options along problem dimension C = 1
+  Factorization options along problem dimension O = 1
+  Factorization options along problem dimension I = 1
+  Factorization options along problem dimension J = 1
+  Factorization options along problem dimension H = 1
+  Factorization options along problem dimension W = 1
+Mapspace Dimension [IndexFactorization] Size: 1
+Mapspace Dimension [LoopPermutation] Size: 13824
+Mapspace Dimension [Spatial] Size: 7
+Mapspace Dimension [DatatypeBypass] Size: 256
+Mapspace split! Per-split Mapping Dimension [IndexFactorization] Size: 1 Residue: 7
+Mapspace construction complete.
+Search configuration complete.
+Start Parsering Layout
+No Layout specified, so using bandwidth based modeling
+[  2] STATEMENT: search algorithm is done, terminating search.
+[  1] STATEMENT: search algorithm is done, terminating search.
+[  3] STATEMENT: search algorithm is done, terminating search.
+[  4] STATEMENT: search algorithm is done, terminating search.
+[  5] STATEMENT: search algorithm is done, terminating search.
+[  7] STATEMENT: search algorithm is done, terminating search.
+[  6] STATEMENT: search algorithm is done, terminating search.
+[  0] Utilization = 0.04 | pJ/Compute =  150.082 | L3[WIBO] I1024 C64 - L2[] J1024 O128 - L1[] W1 H3Y W3Y - L0[] W1  | Cycles = 8589934592
+[  0] Utilization = 0.04 | pJ/Compute =   99.164 | L3[WIBO] I1024 C64 - L2[W] J1024 O128 - L1[] W1 H3Y W3Y - L0[] W1  | Cycles = 8589934592
+[  0] Utilization = 0.04 | pJ/Compute =   86.947 | L3[WIBO] I1024 C64 - L2[] J1024 O128 - L1[] W1 H3Y W3Y - L0[I] W1  | Cycles = 8589934592
+[  0] Utilization = 0.04 | pJ/Compute =   36.030 | L3[WIBO] I1024 C64 - L2[W] J1024 O128 - L1[] W1 H3Y W3Y - L0[I] W1  | Cycles = 8589934592
+[  0] Utilization = 0.04 | pJ/Compute =   35.835 | L3[WIBO] I1024 C64 - L2[WI] J1024 O128 - L1[] W1 H3Y W3Y - L0[I] W1  | Cycles = 8589934592
+[  0] Utilization = 0.04 | pJ/Compute =   30.372 | L3[WIBO] I1024 C64 - L2[WB] J1024 O128 - L1[] W1 H3Y W3Y - L0[I] W1  | Cycles = 8589934592
+[  0] Utilization = 0.04 | pJ/Compute =   30.178 | L3[WIBO] I1024 C64 - L2[WIB] J1024 O128 - L1[] W1 H3Y W3Y - L0[I] W1  | Cycles = 8589934592
+[  0] Utilization = 0.04 | pJ/Compute =   24.996 | L3[WIBO] I1024 C64 - L2[WO] J1024 O128 - L1[] W1 H3Y W3Y - L0[I] W1  | Cycles = 8589934592
+[  0] Utilization = 0.04 | pJ/Compute =   24.801 | L3[WIBO] I1024 C64 - L2[WIO] J1024 O128 - L1[] W1 H3Y W3Y - L0[I] W1  | Cycles = 8589934592
+[  0] Utilization = 0.04 | pJ/Compute =   19.338 | L3[WIBO] I1024 C64 - L2[WBO] J1024 O128 - L1[] W1 H3Y W3Y - L0[I] W1  | Cycles = 8589934592
+[  0] Utilization = 0.04 | pJ/Compute =   19.144 | L3[WIBO] I1024 C64 - L2[WIBO] J1024 O128 - L1[] W1 H3Y W3Y - L0[I] W1  | Cycles = 8589934592
+[  0] STATEMENT: 500 suboptimal mappings found since the last upgrade, terminating search.
+
+
+Summary stats for best mapping found by mapper:
+  Utilization = 0.04 | pJ/Compute =   19.144 | Cycles = 8589934592

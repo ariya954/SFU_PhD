@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: accelergy-table-based-plug-ins
+Version: 0.1
+Summary: An entry point for table-based plug-ins for Accelergy framework
+Home-page: UNKNOWN
+Author: Yannan Wu
+Author-email: nelliewu@mit.edu
+License: MIT
+Keywords: accelerator hardware energy estimation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)
+Requires-Python: >=3.6
+License-File: LICENSE
+
+UNKNOWN
+

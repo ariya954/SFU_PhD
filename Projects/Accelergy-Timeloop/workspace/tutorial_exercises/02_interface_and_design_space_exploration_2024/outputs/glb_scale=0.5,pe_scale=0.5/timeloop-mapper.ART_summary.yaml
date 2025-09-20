@@ -1,0 +1,22 @@
+ART_summary:
+    version: '0.4'
+    table_summary:
+      - name: system_top_level.DRAM[1..1]
+        area: 0.0
+        primitive_estimations: CactiDRAM
+      - name: system_top_level.buffer[1..1]
+        area: 27991.1
+        primitive_estimations: CactiSRAM
+      - name: system_top_level.inter_PE_spatial[1..1]
+        area: 1.0
+        primitive_estimations: dummy
+      - name: system_top_level.reg[1..4]
+        area: 0
+        primitive_estimations: []
+      - name: system_top_level.mac[1..4]
+        area: 3001.45
+        primitive_estimations:
+          - name: adder
+            estimator: Library
+          - name: multiplier
+            estimator: Library
