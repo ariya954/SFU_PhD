@@ -11,17 +11,19 @@ architecture:
     name: MainMemory
     class: DRAM
     attributes:
-      depth: 131072
-      width: 32768
+      depth: 536870912
+      width: 8
       datawidth: 8
+      block_size: 1
 
   - !Component
     name: GlobalBuffer
     class: SRAM
     attributes:
-      depth: 65536
-      width: 512
+      depth: 1048576
+      width: 8
       datawidth: 8
+      block_size: 1
 
   - !Container
     name: PE
@@ -29,14 +31,15 @@ architecture:
 
   - !Component
     name: RegisterFile
-    class: regfile
+    class: SRAM
     attributes:
       depth: 64
       width: 8
       datawidth: 8
+      block_size: 1
 
   - !Component
     name: MACC
     class: intmac
     attributes:
-      width: 8
+      width: 16

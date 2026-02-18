@@ -1,0 +1,278 @@
+2026-01-18 21:38:36 INFO            _                _                      
+2026-01-18 21:38:36 INFO           / \   ___ ___ ___| | ___ _ __ __ _ _   _ 
+2026-01-18 21:38:36 INFO          / _ \ / __/ __/ _ \ |/ _ \ '__/ _` | | | |
+2026-01-18 21:38:36 INFO         / ___ \ (_| (_|  __/ |  __/ | | (_| | |_| |
+2026-01-18 21:38:36 INFO        /_/   \_\___\___\___|_|\___|_|  \__, |\__, |
+2026-01-18 21:38:36 INFO                                        |___/ |___/ 
+2026-01-18 21:38:36 INFO        generating outputs according to the following specified output flags... 
+2026-01-18 21:38:36 INFO         Please use the -f flag to update the preference (default to all output files)
+2026-01-18 21:38:36 INFO        {'ERT': 1, 'ERT_summary': 1, 'ART': 1, 'ART_summary': 1, 'energy_estimation': 1, 'flattened_arch': 1}
+2026-01-18 21:38:36 INFO        Located config file at /home/workspace/.config/accelergy/accelergy_config.yaml.
+2026-01-18 21:38:36 INFO        config file located:
+2026-01-18 21:38:36 INFO        /home/workspace/.config/accelergy/accelergy_config.yaml
+2026-01-18 21:38:36 INFO        Parsing file /home/workspace/tutorial_exercises/PyNET_DNN_Accelerator_Design_exploration/outputs/layer=./inputs/PyNET_Layer1/problem.yaml/parsed-processed-input.yaml for architecture info
+2026-01-18 21:38:36 INFO        Parsing file /home/workspace/tutorial_exercises/PyNET_DNN_Accelerator_Design_exploration/outputs/layer=./inputs/PyNET_Layer1/problem.yaml/parsed-processed-input.yaml for compound_components info
+2026-01-18 21:38:36 WARNING     No compound component classes specified, architecture can only contain primitive components
+2026-01-18 21:38:36 INFO        Adding required action "update" to class DRAM
+2026-01-18 21:38:36 INFO        Adding required action "leak" to class DRAM
+2026-01-18 21:38:36 INFO        Adding required action "read" to class DRAM
+2026-01-18 21:38:36 INFO        Adding required action "write" to class DRAM
+2026-01-18 21:38:36 INFO        Adding required action "update" to class SRAM
+2026-01-18 21:38:36 INFO        Adding required action "leak" to class SRAM
+2026-01-18 21:38:36 INFO        Adding required action "read" to class SRAM
+2026-01-18 21:38:36 INFO        Adding required action "write" to class SRAM
+2026-01-18 21:38:36 INFO        Adding required action "compute" to class intmac
+2026-01-18 21:38:36 INFO        Estimator plug-in identified by: /usr/local/share/accelergy/estimation_plug_ins/accelergy-aladdin-plug-in/aladdin.estimator.yaml
+2026-01-18 21:38:36 INFO        Estimator plug-in identified by: /usr/local/share/accelergy/estimation_plug_ins/accelergy-adc-plug-in/adc.estimator.yaml
+2026-01-18 21:38:36 INFO        Estimator plug-in identified by: /usr/local/share/accelergy/estimation_plug_ins/accelergy-library-plugin/library.estimator.yaml
+2026-01-18 21:38:36 INFO        Estimator plug-in identified by: /usr/local/share/accelergy/estimation_plug_ins/accelergy-neurosim-plugin/neurosim.estimator.yaml
+2026-01-18 21:38:36 INFO        Estimator plug-in identified by: /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti.estimator.yaml
+2026-01-18 21:38:36 INFO        Estimator plug-in identified by: /usr/local/share/accelergy/estimation_plug_ins/accelergy-table-based-plug-ins/table.estimator.yaml
+2026-01-18 21:38:36 INFO        Estimator plug-in identified by: /usr/local/share/accelergy/estimation_plug_ins/dummy_tables/dummy.estimator.yaml
+2026-01-18 21:38:36 INFO        Loading Python plug-in: /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_wrapper.py. Errors below are likely due to plug-in, not Accelergy.
+2026-01-18 21:38:36 INFO        Getting all estimators in module <module 'python_plug_in0' from '/usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_wrapper.py'>
+2026-01-18 21:38:36 INFO        Added estimator CactiCache that estimates cache with actions idle, read, read_access, update, update_access, write, write_access, leak
+2026-01-18 21:38:36 INFO        Added estimator CactiDRAM that estimates ['DRAM', 'dram'] with actions idle, read, update, write, leak
+2026-01-18 21:38:36 INFO        Added estimator CactiSRAM that estimates ['SRAM', 'sram'] with actions idle, read, update, write, leak
+2026-01-18 21:38:36 INFO        Done loading Python plug-ins.
+2026-01-18 21:38:36 INFO        Found estimator plug-in: Aladdin_table (<AladdinTable.AladdinTable object at 0x79dbfd4775b0>)
+2026-01-18 21:38:36 INFO        Found estimator plug-in: ADC Plug-In (<ADCEstimator.ADCEstimator object at 0x79dbfd4758d0>)
+2026-01-18 21:38:36 INFO        Found estimator plug-in: Library (<LibraryEstimator.LibraryEstimator object at 0x79dbfd476bf0>)
+2026-01-18 21:38:36 INFO        Found estimator plug-in: Neurosim Plug-In (<NeuroWrapper.NeuroWrapper object at 0x79dbfd476410>)
+2026-01-18 21:38:36 INFO        Found estimator plug-in: DEPRECATED table-based-plug-ins. Use the Library plug-in instead. (<SetsOfTables.SetsOfTables object at 0x79dbfd474e80>)
+2026-01-18 21:38:36 INFO        Found estimator plug-in: dummy (<DummyTable.DummyTable object at 0x79dbfd3aac80>)
+2026-01-18 21:38:36 INFO        Found estimator plug-in: CactiCache (<accelergy.plug_in_interface.estimator_wrapper.EstimatorWrapper object at 0x79dbfd3abc70>)
+2026-01-18 21:38:36 INFO        Found estimator plug-in: CactiDRAM (<accelergy.plug_in_interface.estimator_wrapper.EstimatorWrapper object at 0x79dbfd3abe50>)
+2026-01-18 21:38:36 INFO        Found estimator plug-in: CactiSRAM (<accelergy.plug_in_interface.estimator_wrapper.EstimatorWrapper object at 0x79dbfd3aab00>)
+2026-01-18 21:38:36 INFO        
+2026-01-18 21:38:36 INFO        ENERGY ESTIMATION for DRAM(depth=536870912, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).update(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:36 INFO        CactiDRAM estimated 6.4e-11 with accuracy 80%. Messages:
+2026-01-18 21:38:36 INFO        | Unused arguments (depth, datawidth, block_size, has_power_gating, n_banks, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, technology, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['DRAM', 'dram'].__init__. Arguments used: (width)
+2026-01-18 21:38:36 INFO        | Unused arguments (global_cycle_seconds, action_latency_cycles) provided for ['DRAM', 'dram'].update. Arguments used: ()
+2026-01-18 21:38:36 INFO        
+2026-01-18 21:38:36 INFO        ENERGY ESTIMATION for DRAM(depth=536870912, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).leak(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:36 INFO        CactiDRAM estimated 0 with accuracy 80%. Messages:
+2026-01-18 21:38:36 INFO        | Unused arguments (depth, datawidth, block_size, has_power_gating, n_banks, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, technology, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['DRAM', 'dram'].__init__. Arguments used: (width)
+2026-01-18 21:38:36 INFO        | Unused arguments (action_latency_cycles) provided for ['DRAM', 'dram'].leak. Arguments used: (global_cycle_seconds)
+2026-01-18 21:38:36 INFO        | Multiplying by n_instances 1
+2026-01-18 21:38:36 INFO        
+2026-01-18 21:38:36 INFO        ENERGY ESTIMATION for DRAM(depth=536870912, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).read(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:36 INFO        CactiDRAM estimated 6.4e-11 with accuracy 80%. Messages:
+2026-01-18 21:38:36 INFO        | Unused arguments (depth, datawidth, block_size, has_power_gating, n_banks, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, technology, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['DRAM', 'dram'].__init__. Arguments used: (width)
+2026-01-18 21:38:36 INFO        | Unused arguments (global_cycle_seconds, action_latency_cycles) provided for ['DRAM', 'dram'].read. Arguments used: ()
+2026-01-18 21:38:36 INFO        
+2026-01-18 21:38:36 INFO        ENERGY ESTIMATION for DRAM(depth=536870912, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).write(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:36 INFO        CactiDRAM estimated 6.4e-11 with accuracy 80%. Messages:
+2026-01-18 21:38:36 INFO        | Unused arguments (depth, datawidth, block_size, has_power_gating, n_banks, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, technology, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['DRAM', 'dram'].__init__. Arguments used: (width)
+2026-01-18 21:38:36 INFO        | Unused arguments (global_cycle_seconds, action_latency_cycles) provided for ['DRAM', 'dram'].write. Arguments used: ()
+2026-01-18 21:38:36 INFO        
+2026-01-18 21:38:36 INFO        ENERGY ESTIMATION for SRAM(depth=1048576, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).update(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:38 INFO        CactiSRAM estimated 3.875960538461539e-11 with accuracy 80%. Messages:
+2026-01-18 21:38:38 INFO        | Unused arguments (datawidth, block_size, has_power_gating, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['SRAM', 'sram'].__init__. Arguments used: (depth, width, n_banks, technology)
+2026-01-18 21:38:38 INFO        | Unused arguments (global_cycle_seconds, action_latency_cycles) provided for ['SRAM', 'sram'].update. Arguments used: ()
+2026-01-18 21:38:38 INFO        | Interpolating technology between 32 and 45.
+2026-01-18 21:38:38 INFO        | Calling CACTI with cache_size=4194304 n_rw_ports=1 block_size=4 tech_node_um=0.032 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:38 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmp_4wqu2bt
+2026-01-18 21:38:38 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmplbyoi214
+2026-01-18 21:38:38 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:38 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmp_4wqu2bt >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmplbyoi214 2>&1
+2026-01-18 21:38:38 INFO        | Calling CACTI with cache_size=4194304 n_rw_ports=1 block_size=4 tech_node_um=0.045 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:38 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpqkvsydae
+2026-01-18 21:38:38 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmplx1no15k
+2026-01-18 21:38:38 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:38 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpqkvsydae >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmplx1no15k 2>&1
+2026-01-18 21:38:38 INFO        | Cache bandwidth: 2.0 bytes/cycle
+2026-01-18 21:38:38 INFO        | Cache bandwidth: 5410814814.082581 bits/second
+2026-01-18 21:38:38 INFO        
+2026-01-18 21:38:38 INFO        ENERGY ESTIMATION for SRAM(depth=1048576, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).leak(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:41 INFO        CactiSRAM estimated 3.147902307692308e-14 with accuracy 80%. Messages:
+2026-01-18 21:38:41 INFO        | Unused arguments (datawidth, block_size, has_power_gating, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['SRAM', 'sram'].__init__. Arguments used: (depth, width, n_banks, technology)
+2026-01-18 21:38:41 INFO        | Unused arguments (action_latency_cycles) provided for ['SRAM', 'sram'].leak. Arguments used: (global_cycle_seconds)
+2026-01-18 21:38:41 INFO        | Interpolating technology between 32 and 45.
+2026-01-18 21:38:41 INFO        | Calling CACTI with cache_size=4194304 n_rw_ports=1 block_size=4 tech_node_um=0.032 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:41 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpbzxpktn5
+2026-01-18 21:38:41 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmppoyqa79e
+2026-01-18 21:38:41 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:41 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpbzxpktn5 >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmppoyqa79e 2>&1
+2026-01-18 21:38:41 INFO        | Calling CACTI with cache_size=4194304 n_rw_ports=1 block_size=4 tech_node_um=0.045 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:41 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpkowo7yzi
+2026-01-18 21:38:41 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpjo8_h1qd
+2026-01-18 21:38:41 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:41 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpkowo7yzi >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpjo8_h1qd 2>&1
+2026-01-18 21:38:41 INFO        | Cache bandwidth: 2.0 bytes/cycle
+2026-01-18 21:38:41 INFO        | Cache bandwidth: 5410814814.082581 bits/second
+2026-01-18 21:38:41 INFO        | Global cycle time 1e-09 is less than the cache's random cycle time 2.95704076923077e-09
+2026-01-18 21:38:41 INFO        | Multiplying by n_instances 1
+2026-01-18 21:38:41 INFO        
+2026-01-18 21:38:41 INFO        ENERGY ESTIMATION for SRAM(depth=1048576, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).read(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:43 INFO        CactiSRAM estimated 4.6698985576923076e-11 with accuracy 80%. Messages:
+2026-01-18 21:38:43 INFO        | Unused arguments (datawidth, block_size, has_power_gating, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['SRAM', 'sram'].__init__. Arguments used: (depth, width, n_banks, technology)
+2026-01-18 21:38:43 INFO        | Unused arguments (global_cycle_seconds, action_latency_cycles) provided for ['SRAM', 'sram'].read. Arguments used: ()
+2026-01-18 21:38:43 INFO        | Interpolating technology between 32 and 45.
+2026-01-18 21:38:43 INFO        | Calling CACTI with cache_size=4194304 n_rw_ports=1 block_size=4 tech_node_um=0.032 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:43 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpmzs09qve
+2026-01-18 21:38:43 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpea7x59tr
+2026-01-18 21:38:43 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:43 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpmzs09qve >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpea7x59tr 2>&1
+2026-01-18 21:38:43 INFO        | Calling CACTI with cache_size=4194304 n_rw_ports=1 block_size=4 tech_node_um=0.045 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:43 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpy1znobso
+2026-01-18 21:38:43 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpgn9ebm2w
+2026-01-18 21:38:43 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:43 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpy1znobso >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpgn9ebm2w 2>&1
+2026-01-18 21:38:43 INFO        | Cache bandwidth: 2.0 bytes/cycle
+2026-01-18 21:38:43 INFO        | Cache bandwidth: 5410814814.082581 bits/second
+2026-01-18 21:38:43 INFO        
+2026-01-18 21:38:43 INFO        ENERGY ESTIMATION for SRAM(depth=1048576, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).write(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:45 INFO        CactiSRAM estimated 3.875960538461539e-11 with accuracy 80%. Messages:
+2026-01-18 21:38:45 INFO        | Unused arguments (datawidth, block_size, has_power_gating, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['SRAM', 'sram'].__init__. Arguments used: (depth, width, n_banks, technology)
+2026-01-18 21:38:45 INFO        | Unused arguments (global_cycle_seconds, action_latency_cycles) provided for ['SRAM', 'sram'].write. Arguments used: ()
+2026-01-18 21:38:45 INFO        | Interpolating technology between 32 and 45.
+2026-01-18 21:38:45 INFO        | Calling CACTI with cache_size=4194304 n_rw_ports=1 block_size=4 tech_node_um=0.032 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:45 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpghusur0g
+2026-01-18 21:38:45 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpnwg888b7
+2026-01-18 21:38:45 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:45 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpghusur0g >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpnwg888b7 2>&1
+2026-01-18 21:38:45 INFO        | Calling CACTI with cache_size=4194304 n_rw_ports=1 block_size=4 tech_node_um=0.045 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:45 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmppsl_kyi9
+2026-01-18 21:38:45 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpyd4buhz3
+2026-01-18 21:38:45 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:45 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmppsl_kyi9 >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpyd4buhz3 2>&1
+2026-01-18 21:38:45 INFO        | Cache bandwidth: 2.0 bytes/cycle
+2026-01-18 21:38:45 INFO        | Cache bandwidth: 5410814814.082581 bits/second
+2026-01-18 21:38:45 INFO        
+2026-01-18 21:38:45 INFO        ENERGY ESTIMATION for SRAM(depth=64, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=16, meshY=16, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).update(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:45 INFO        CactiSRAM estimated 3.105783611092042e-13 with accuracy 80%. Messages:
+2026-01-18 21:38:45 INFO        | Unused arguments (datawidth, block_size, has_power_gating, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['SRAM', 'sram'].__init__. Arguments used: (depth, width, n_banks, technology)
+2026-01-18 21:38:45 INFO        | Unused arguments (global_cycle_seconds, action_latency_cycles) provided for ['SRAM', 'sram'].update. Arguments used: ()
+2026-01-18 21:38:45 INFO        | Interpolating technology between 32 and 45.
+2026-01-18 21:38:45 INFO        | Calling CACTI with cache_size=512 n_rw_ports=1 block_size=4 tech_node_um=0.032 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:45 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpf809xtgl
+2026-01-18 21:38:45 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmprmitviai
+2026-01-18 21:38:45 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:45 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpf809xtgl >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmprmitviai 2>&1
+2026-01-18 21:38:45 INFO        | Calling CACTI with cache_size=512 n_rw_ports=1 block_size=4 tech_node_um=0.045 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:45 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmp7q1p6s9c
+2026-01-18 21:38:45 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpykjsog_2
+2026-01-18 21:38:45 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:45 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmp7q1p6s9c >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpykjsog_2 2>&1
+2026-01-18 21:38:45 INFO        | Cache bandwidth: 2.0 bytes/cycle
+2026-01-18 21:38:45 INFO        | Cache bandwidth: 35925347128.666626 bits/second
+2026-01-18 21:38:45 INFO        
+2026-01-18 21:38:45 INFO        ENERGY ESTIMATION for SRAM(depth=64, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=16, meshY=16, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).leak(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:45 INFO        CactiSRAM estimated 4.046823076923077e-18 with accuracy 80%. Messages:
+2026-01-18 21:38:45 INFO        | Unused arguments (datawidth, block_size, has_power_gating, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['SRAM', 'sram'].__init__. Arguments used: (depth, width, n_banks, technology)
+2026-01-18 21:38:45 INFO        | Unused arguments (action_latency_cycles) provided for ['SRAM', 'sram'].leak. Arguments used: (global_cycle_seconds)
+2026-01-18 21:38:45 INFO        | Interpolating technology between 32 and 45.
+2026-01-18 21:38:45 INFO        | Calling CACTI with cache_size=512 n_rw_ports=1 block_size=4 tech_node_um=0.032 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:45 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmp6x8sj217
+2026-01-18 21:38:45 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpzclxjbfi
+2026-01-18 21:38:45 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:45 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmp6x8sj217 >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpzclxjbfi 2>&1
+2026-01-18 21:38:45 INFO        | Calling CACTI with cache_size=512 n_rw_ports=1 block_size=4 tech_node_um=0.045 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:45 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpn96qte4y
+2026-01-18 21:38:45 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpw3yi3w7n
+2026-01-18 21:38:45 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:45 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpn96qte4y >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpw3yi3w7n 2>&1
+2026-01-18 21:38:45 INFO        | Cache bandwidth: 2.0 bytes/cycle
+2026-01-18 21:38:45 INFO        | Cache bandwidth: 35925347128.666626 bits/second
+2026-01-18 21:38:45 INFO        | Multiplying by n_instances 1
+2026-01-18 21:38:45 INFO        
+2026-01-18 21:38:45 INFO        ENERGY ESTIMATION for SRAM(depth=64, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=16, meshY=16, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).read(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:46 INFO        CactiSRAM estimated 2.1143053551418007e-13 with accuracy 80%. Messages:
+2026-01-18 21:38:46 INFO        | Unused arguments (datawidth, block_size, has_power_gating, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['SRAM', 'sram'].__init__. Arguments used: (depth, width, n_banks, technology)
+2026-01-18 21:38:46 INFO        | Unused arguments (global_cycle_seconds, action_latency_cycles) provided for ['SRAM', 'sram'].read. Arguments used: ()
+2026-01-18 21:38:46 INFO        | Interpolating technology between 32 and 45.
+2026-01-18 21:38:46 INFO        | Calling CACTI with cache_size=512 n_rw_ports=1 block_size=4 tech_node_um=0.032 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:46 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpl2gytb_p
+2026-01-18 21:38:46 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpb55refus
+2026-01-18 21:38:46 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:46 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpl2gytb_p >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpb55refus 2>&1
+2026-01-18 21:38:46 INFO        | Calling CACTI with cache_size=512 n_rw_ports=1 block_size=4 tech_node_um=0.045 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:46 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpmvruv00l
+2026-01-18 21:38:46 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpsly9t0x2
+2026-01-18 21:38:46 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:46 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpmvruv00l >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpsly9t0x2 2>&1
+2026-01-18 21:38:46 INFO        | Cache bandwidth: 2.0 bytes/cycle
+2026-01-18 21:38:46 INFO        | Cache bandwidth: 35925347128.666626 bits/second
+2026-01-18 21:38:46 INFO        
+2026-01-18 21:38:46 INFO        ENERGY ESTIMATION for SRAM(depth=64, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=16, meshY=16, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).write(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:46 INFO        CactiSRAM estimated 3.105783611092042e-13 with accuracy 80%. Messages:
+2026-01-18 21:38:46 INFO        | Unused arguments (datawidth, block_size, has_power_gating, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['SRAM', 'sram'].__init__. Arguments used: (depth, width, n_banks, technology)
+2026-01-18 21:38:46 INFO        | Unused arguments (global_cycle_seconds, action_latency_cycles) provided for ['SRAM', 'sram'].write. Arguments used: ()
+2026-01-18 21:38:46 INFO        | Interpolating technology between 32 and 45.
+2026-01-18 21:38:46 INFO        | Calling CACTI with cache_size=512 n_rw_ports=1 block_size=4 tech_node_um=0.032 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:46 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpsnl2xfs9
+2026-01-18 21:38:46 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpy03e74i6
+2026-01-18 21:38:46 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:46 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpsnl2xfs9 >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpy03e74i6 2>&1
+2026-01-18 21:38:46 INFO        | Calling CACTI with cache_size=512 n_rw_ports=1 block_size=4 tech_node_um=0.045 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:46 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpseuo66lz
+2026-01-18 21:38:46 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpthvqfmcz
+2026-01-18 21:38:46 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:46 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpseuo66lz >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpthvqfmcz 2>&1
+2026-01-18 21:38:46 INFO        | Cache bandwidth: 2.0 bytes/cycle
+2026-01-18 21:38:46 INFO        | Cache bandwidth: 35925347128.666626 bits/second
+2026-01-18 21:38:46 INFO        
+2026-01-18 21:38:46 INFO        ENERGY ESTIMATION for intmac(width=16, has_power_gating=False, meshX=16, meshY=16, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1).compute(global_cycle_seconds=1e-09, action_latency_cycles=1)
+2026-01-18 21:38:46 INFO        Aladdin_table estimated 3.275p with accuracy 70%. 
+2026-01-18 21:38:46 WARNING     No action counts are specified as yaml input
+2026-01-18 21:38:46 INFO        
+2026-01-18 21:38:46 INFO        AREA ESTIMATION for DRAM(depth=536870912, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1)
+2026-01-18 21:38:46 INFO        CactiDRAM estimated 0 with accuracy 80%. Messages:
+2026-01-18 21:38:46 INFO        | Unused arguments (depth, datawidth, block_size, has_power_gating, n_banks, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, technology, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['DRAM', 'dram'].__init__. Arguments used: (width)
+2026-01-18 21:38:46 INFO        | Multiplying by n_instances 1
+2026-01-18 21:38:46 INFO        
+2026-01-18 21:38:46 INFO        AREA ESTIMATION for SRAM(depth=1048576, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1)
+2026-01-18 21:38:48 INFO        CactiSRAM estimated 2.539843269230769e-06 with accuracy 80%. Messages:
+2026-01-18 21:38:48 INFO        | Unused arguments (datawidth, block_size, has_power_gating, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['SRAM', 'sram'].__init__. Arguments used: (depth, width, n_banks, technology)
+2026-01-18 21:38:48 INFO        | Interpolating technology between 32 and 45.
+2026-01-18 21:38:48 INFO        | Calling CACTI with cache_size=4194304 n_rw_ports=1 block_size=4 tech_node_um=0.032 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:48 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpworhdaa6
+2026-01-18 21:38:48 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpxpfxwgva
+2026-01-18 21:38:48 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:48 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpworhdaa6 >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpxpfxwgva 2>&1
+2026-01-18 21:38:48 INFO        | Calling CACTI with cache_size=4194304 n_rw_ports=1 block_size=4 tech_node_um=0.045 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:48 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpxu2ymye0
+2026-01-18 21:38:48 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmphtfpn4h_
+2026-01-18 21:38:48 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:48 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpxu2ymye0 >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmphtfpn4h_ 2>&1
+2026-01-18 21:38:48 INFO        | Cache bandwidth: 2.0 bytes/cycle
+2026-01-18 21:38:48 INFO        | Cache bandwidth: 5410814814.082581 bits/second
+2026-01-18 21:38:48 INFO        | Multiplying by n_instances 1
+2026-01-18 21:38:48 INFO        
+2026-01-18 21:38:48 INFO        AREA ESTIMATION for dummy_storage(width=1, depth=1, datawidth=1, technology=-1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=1, meshY=1, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1)
+2026-01-18 21:38:48 INFO        dummy estimated 1u^2 with accuracy 100%. Messages:
+2026-01-18 21:38:48 INFO        | Multiplying by n_instances 1
+2026-01-18 21:38:48 INFO        
+2026-01-18 21:38:48 INFO        AREA ESTIMATION for SRAM(depth=64, width=8, datawidth=8, block_size=1, has_power_gating=False, n_banks=2, cluster_size=1, reduction_supported=True, multiple_buffering=1, min_utilization=0, allow_overbooking=False, meshX=16, meshY=16, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1)
+2026-01-18 21:38:48 INFO        CactiSRAM estimated 2.612451923076923e-10 with accuracy 80%. Messages:
+2026-01-18 21:38:48 INFO        | Unused arguments (datawidth, block_size, has_power_gating, cluster_size, reduction_supported, multiple_buffering, min_utilization, allow_overbooking, meshX, meshY, global_cycle_seconds, version, action_latency_cycles, cycle_seconds, n_instances) provided for ['SRAM', 'sram'].__init__. Arguments used: (depth, width, n_banks, technology)
+2026-01-18 21:38:48 INFO        | Interpolating technology between 32 and 45.
+2026-01-18 21:38:48 INFO        | Calling CACTI with cache_size=512 n_rw_ports=1 block_size=4 tech_node_um=0.032 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:48 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpmtr7ttox
+2026-01-18 21:38:48 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpbddhsr8y
+2026-01-18 21:38:48 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:48 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpmtr7ttox >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpbddhsr8y 2>&1
+2026-01-18 21:38:48 INFO        | Calling CACTI with cache_size=512 n_rw_ports=1 block_size=4 tech_node_um=0.045 n_banks=2 tag_size=0 associativity=1
+2026-01-18 21:38:48 INFO        | Calling CACTI with input path /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpvamo31c7
+2026-01-18 21:38:48 INFO        | CACTI output will be written to /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmppi30_czq
+2026-01-18 21:38:48 INFO        | CACTI executable not found at /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti/cacti
+2026-01-18 21:38:48 INFO        | Calling: cd /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in ; ./cacti -infile /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmpvamo31c7 >> /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti_inputs_outputs/tmppi30_czq 2>&1
+2026-01-18 21:38:48 INFO        | Cache bandwidth: 2.0 bytes/cycle
+2026-01-18 21:38:48 INFO        | Cache bandwidth: 35925347128.666626 bits/second
+2026-01-18 21:38:48 INFO        | Multiplying by n_instances 1
+2026-01-18 21:38:48 INFO        
+2026-01-18 21:38:48 INFO        AREA ESTIMATION for intmac(width=16, has_power_gating=False, meshX=16, meshY=16, technology=40nm, global_cycle_seconds=1e-09, version=0.4, action_latency_cycles=1, cycle_seconds=1e-09, n_instances=1)
+2026-01-18 21:38:48 INFO        Aladdin_table estimated 1726.5u^2 with accuracy 70%. Messages:
+2026-01-18 21:38:48 INFO        | Multiplying by n_instances 1
+2026-01-18 21:38:48 INFO        flattened architecture is saved to:
+2026-01-18 21:38:48 INFO        ./timeloop-mapper.flattened_architecture.yaml
+2026-01-18 21:38:48 INFO        energy reference table is saved to:
+2026-01-18 21:38:48 INFO        ./timeloop-mapper.ERT.yaml
+2026-01-18 21:38:48 INFO        energy reference table summary is saved to:
+2026-01-18 21:38:48 INFO        ./timeloop-mapper.ERT_summary.yaml
+2026-01-18 21:38:48 WARNING     no runtime energy estimations are generated... not generating energy_estimation.yaml
+2026-01-18 21:38:48 INFO        area reference table is saved to:
+2026-01-18 21:38:48 INFO        ./timeloop-mapper.ART.yaml
+2026-01-18 21:38:48 INFO        area reference table summary is saved to:
+2026-01-18 21:38:48 INFO        ./timeloop-mapper.ART_summary.yaml
