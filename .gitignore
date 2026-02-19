@@ -32,3 +32,19 @@ Projects/Gaussian_Splatting_Serial/data/
 # generated outputs / results (very large)
 Projects/Gaussian_Splatting_Serial/output/
 *.ply
+
+# --- Parallel Gaussian Splatting: don't commit datasets / outputs / build ---
+Projects/Gaussian_Splatting_Parallel/data/
+Projects/Gaussian_Splatting_Parallel/output/
+Projects/Gaussian_Splatting_Parallel/results/
+Projects/Gaussian_Splatting_Parallel/outputs/
+Projects/Gaussian_Splatting_Parallel/**/build/
+Projects/Gaussian_Splatting_Parallel/**/__pycache__/
+Projects/Gaussian_Splatting_Parallel/**/*.pyc
+Projects/Gaussian_Splatting_Parallel/**/*.o
+Projects/Gaussian_Splatting_Parallel/**/*.a
+Projects/Gaussian_Splatting_Parallel/**/*.so
+Projects/Gaussian_Splatting_Parallel/**/*.pt
+Projects/Gaussian_Splatting_Parallel/**/*.pth
+Projects/Gaussian_Splatting_Parallel/**/*.ckpt
+Projects/Gaussian_Splatting_Parallel/**/*.ply
