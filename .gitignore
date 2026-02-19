@@ -1,0 +1,34 @@
+
+# datasets / large binaries
+Projects/Gaussian_Splatting_Serial/data/
+*.zip
+*.bin
+
+# build outputs + caches
+**/build/
+**/__pycache__/
+*.pyc
+*.o
+*.a
+*.so
+
+# --- Serial Gaussian Splatting: do NOT commit datasets ---
+Projects/Gaussian_Splatting_Serial/data/
+*.zip
+*.bin
+*.tar
+
+# --- build artifacts / caches ---
+**/build/
+**/__pycache__/
+*.pyc
+*.o
+*.a
+*.so
+*.pt
+*.pth
+*.ckpt
+
+# generated outputs / results (very large)
+Projects/Gaussian_Splatting_Serial/output/
+*.ply

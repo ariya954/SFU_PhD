@@ -1,0 +1,15 @@
+# ninja log v5
+1	384	1763762265661279643	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/dependencies/fmt/src/os.o	b8b6b8057ea028c7
+1	1309	1763762266589276015	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/dependencies/fmt/src/format.o	5d42600f973dd588
+3	4978	1763762270249261704	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/src/rtc_kernel.o	2ac4a0dea2d333c6
+3	5376	1763762270649260139	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/src/object.o	283c2df0ab17afcb
+1	5542	1763762270821259466	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/src/common_host.o	8c0029581a6c4a70
+3	5811	1763762271089258419	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/src/network.o	937a42d69e769809
+1	7805	1763762273073250655	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/src/cpp_api.o	a70d79f13b4a2825
+3	16479	1763762281721216784	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/build/temp.linux-aarch64-cpython-310/tinycudann/bindings.o	7bdaa81cee07b653
+2	32779	1763762298025152785	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/src/cutlass_mlp.o	c2e278b45aab642b
+2	59743	1763762324957046672	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/src/encoding.o	9670fa441296b090
+2	155716	1763762420928664883	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/src/fully_fused_mlp.o	62d9a1bb186d460f
+45	493	1763794494935062000	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/dependencies/fmt/src/os.o	8d6a21dc593d4777
+45	2976	1763794497415062000	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/dependencies/fmt/src/format.o	36d10c245a9339b4
+45	20340	1763794514759062000	/home/mta188/gaussian-splatting/submodules/tiny-cuda-nn/bindings/torch/build/temp.linux-aarch64-cpython-310/tinycudann/bindings.o	3ca8c493b6851b72
