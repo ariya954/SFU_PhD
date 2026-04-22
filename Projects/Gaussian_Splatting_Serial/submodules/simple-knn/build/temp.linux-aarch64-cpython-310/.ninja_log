@@ -1,4 +1,0 @@
-# ninja log v5
-0	9336	1763761451416623456	/home/mta188/gaussian-splatting/submodules/simple-knn/build/temp.linux-aarch64-cpython-310/simple_knn.o	f6c75ad7614ba7c8
-0	10399	1763761452468618761	/home/mta188/gaussian-splatting/submodules/simple-knn/build/temp.linux-aarch64-cpython-310/ext.o	4ff78d64f332248c
-1	33218	1763761475260517033	/home/mta188/gaussian-splatting/submodules/simple-knn/build/temp.linux-aarch64-cpython-310/spatial.o	c75d2b737b76f5d4
