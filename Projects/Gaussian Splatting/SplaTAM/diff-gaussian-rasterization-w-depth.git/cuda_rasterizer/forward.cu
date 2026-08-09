@@ -105,6 +105,10 @@ __device__ float3 computeCov2D(const float3& mean, float focal_x, float focal_y,
 
 	glm::mat3 cov = glm::transpose(T) * glm::transpose(Vrk) * T;
 
+	// Apply low-pass filter: every Gaussian should be at least
+	// one pixel wide/high. Discard 3rd row and column.
+	cov[0][0] += 0.3f;
+	cov[1][1] += 0.3f;
 	return { float(cov[0][0]), float(cov[0][1]), float(cov[1][1]) };
 }
 
@@ -173,8 +177,7 @@ __global__ void preprocessCUDA(int P, int D, int M,
 	float4* conic_opacity,
 	const dim3 grid,
 	uint32_t* tiles_touched,
-	bool prefiltered,
-	bool antialiasing)
+	bool prefiltered)
 {
 	auto idx = cg::this_grid().thread_rank();
 	if (idx >= P)
@@ -212,19 +215,8 @@ __global__ void preprocessCUDA(int P, int D, int M,
 	// Compute 2D screen-space covariance matrix
 	float3 cov = computeCov2D(p_orig, focal_x, focal_y, tan_fovx, tan_fovy, cov3D, viewmatrix);
 
-	constexpr float h_var = 0.3f;
-	const float det_cov = cov.x * cov.z - cov.y * cov.y;
-	cov.x += h_var;
-	cov.z += h_var;
-	const float det_cov_plus_h_cov = cov.x * cov.z - cov.y * cov.y;
-	float h_convolution_scaling = 1.0f;
-
-	if(antialiasing)
-		h_convolution_scaling = sqrt(max(0.000025f, det_cov / det_cov_plus_h_cov)); // max for numerical stability
-
 	// Invert covariance (EWA algorithm)
-	const float det = det_cov_plus_h_cov;
-
+	float det = (cov.x * cov.z - cov.y * cov.y);
 	if (det == 0.0f)
 		return;
 	float det_inv = 1.f / det;
@@ -259,12 +251,7 @@ __global__ void preprocessCUDA(int P, int D, int M,
 	radii[idx] = my_radius;
 	points_xy_image[idx] = point_image;
 	// Inverse 2D covariance and opacity neatly pack into one float4
-	float opacity = opacities[idx];
-
-
-	conic_opacity[idx] = { conic.x, conic.y, conic.z, opacity * h_convolution_scaling };
-
-
+	conic_opacity[idx] = { conic.x, conic.y, conic.z, opacities[idx] };
 	tiles_touched[idx] = (rect_max.y - rect_min.y) * (rect_max.x - rect_min.x);
 }
 
@@ -284,8 +271,8 @@ renderCUDA(
 	uint32_t* __restrict__ n_contrib,
 	const float* __restrict__ bg_color,
 	float* __restrict__ out_color,
-	const float* __restrict__ depths,
-	float* __restrict__ invdepth)
+	const float* __restrict__ depth,
+	float* __restrict__ out_depth)
 {
 	// Identify current tile and associated min/max pixel range.
 	auto block = cg::this_thread_block();
@@ -310,14 +297,14 @@ renderCUDA(
 	__shared__ int collected_id[BLOCK_SIZE];
 	__shared__ float2 collected_xy[BLOCK_SIZE];
 	__shared__ float4 collected_conic_opacity[BLOCK_SIZE];
+	__shared__ float collected_depth[BLOCK_SIZE];
 
 	// Initialize helper variables
 	float T = 1.0f;
 	uint32_t contributor = 0;
 	uint32_t last_contributor = 0;
 	float C[CHANNELS] = { 0 };
-
-	float expected_invdepth = 0.0f;
+    float D = 15.0f;  // Median Depth. TODO: This is a hack setting max_depth to 15
 
 	// Iterate over batches until all done or range is complete
 	for (int i = 0; i < rounds; i++, toDo -= BLOCK_SIZE)
@@ -329,14 +316,14 @@ renderCUDA(
 
 		// Collectively fetch per-Gaussian data from global to shared
 		int progress = i * BLOCK_SIZE + block.thread_rank();
-		int coll_id = point_list[range.x + progress];
 		if (range.x + progress < range.y)
 		{
+			int coll_id = point_list[range.x + progress];
 			collected_id[block.thread_rank()] = coll_id;
 			collected_xy[block.thread_rank()] = points_xy_image[coll_id];
 			collected_conic_opacity[block.thread_rank()] = conic_opacity[coll_id];
+			collected_depth[block.thread_rank()] = depth[coll_id];
 		}
-
 		block.sync();
 
 		// Iterate over current batch
@@ -362,8 +349,9 @@ renderCUDA(
 
 			if (alpha < 1.0f / 255.0f)
 				continue;
+
 			float test_T = T * (1 - alpha);
-			if (test_T < 0.01f)
+			if (test_T < 0.0001f)
 			{
 				done = true;
 				continue;
@@ -373,14 +361,24 @@ renderCUDA(
 			for (int ch = 0; ch < CHANNELS; ch++)
 				C[ch] += features[collected_id[j] * CHANNELS + ch] * alpha * T;
 
-			if(invdepth)
-			expected_invdepth += (1 / depths[collected_id[j]]) * alpha * T;
+            // Median depth:
+            if (T > 0.5f && test_T < 0.5)
+			{
+			    float dep = collected_depth[j];
+				D = dep;
+			}
 
 			T = test_T;
 
 			// Keep track of last range entry to update this
 			// pixel.
 			last_contributor = contributor;
+
+            if (T < 0.0001f)
+            {
+                done = true;
+            }
+
 		}
 	}
 
@@ -392,10 +390,9 @@ renderCUDA(
 		n_contrib[pix_id] = last_contributor;
 		for (int ch = 0; ch < CHANNELS; ch++)
 			out_color[ch * H * W + pix_id] = C[ch] + T * bg_color[ch];
-
-		if (invdepth)
-		invdepth[pix_id] = expected_invdepth;// 1. / (expected_depth + T * 1e3);
+		out_depth[pix_id] = D;
 	}
+
 }
 
 void FORWARD::render(
@@ -410,8 +407,8 @@ void FORWARD::render(
 	uint32_t* n_contrib,
 	const float* bg_color,
 	float* out_color,
-	float* depths,
-	float* depth)
+	const float* depth,
+	float* out_depth)
 {
 	renderCUDA<NUM_CHANNELS> << <grid, block >> > (
 		ranges,
@@ -424,8 +421,8 @@ void FORWARD::render(
 		n_contrib,
 		bg_color,
 		out_color,
-		depths,
-		depth);
+		depth,
+		out_depth);
 }
 
 void FORWARD::preprocess(int P, int D, int M,
@@ -452,8 +449,7 @@ void FORWARD::preprocess(int P, int D, int M,
 	float4* conic_opacity,
 	const dim3 grid,
 	uint32_t* tiles_touched,
-	bool prefiltered,
-	bool antialiasing)
+	bool prefiltered)
 {
 	preprocessCUDA<NUM_CHANNELS> << <(P + 255) / 256, 256 >> > (
 		P, D, M,
@@ -480,7 +476,6 @@ void FORWARD::preprocess(int P, int D, int M,
 		conic_opacity,
 		grid,
 		tiles_touched,
-		prefiltered,
-		antialiasing
+		prefiltered
 		);
 }

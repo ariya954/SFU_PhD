@@ -1,0 +1,23 @@
+mapping:
+  - target: MainMemory
+    type: temporal
+    permutation: IJCOHW
+
+  - target: GlobalBuffer
+    type: dataspace
+    bypass: [Inputs, Weights]
+    keep:   [Outputs, Bias]
+
+  - target: GlobalBuffer
+    type: temporal
+    permutation: IJOC
+
+  - target: PE
+    type: spatial
+    factors: O=16 C=16
+    permutation: OC
+
+  - target: RegisterFile
+    type: temporal
+    factors: H=3 W=3 C=1
+    permutation: HWC

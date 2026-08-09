@@ -33,9 +33,18 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
     tanfovx = math.tan(viewpoint_camera.FoVx * 0.5)
     tanfovy = math.tan(viewpoint_camera.FoVy * 0.5)
 
+    image_height = int(viewpoint_camera.image_height)
+    image_width = int(viewpoint_camera.image_width)
+
+    ds = getattr(pipe, "downscale", 1)  # we'll set pipe.downscale from train.py
+    if ds > 1:
+        image_height = image_height // ds
+        image_width = image_width // ds
+
+
     raster_settings = GaussianRasterizationSettings(
-        image_height=int(viewpoint_camera.image_height),
-        image_width=int(viewpoint_camera.image_width),
+        image_height,
+        image_width,
         tanfovx=tanfovx,
         tanfovy=tanfovy,
         bg=bg_color,
@@ -45,8 +54,8 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
         sh_degree=pc.active_sh_degree,
         campos=viewpoint_camera.camera_center,
         prefiltered=False,
-        debug=pipe.debug,
-        antialiasing=pipe.antialiasing
+        #debug=pipe.debug,
+        #antialiasing=pipe.antialiasing
     )
 
     rasterizer = GaussianRasterizer(raster_settings=raster_settings)
